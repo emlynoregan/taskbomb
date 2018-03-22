@@ -2,6 +2,7 @@ from google.appengine.api.taskqueue import taskqueue
 from flask import request
 import logging
 import json
+from im_task import task
 
 def TaskBombDepth10Experiment():
     def Go():
@@ -42,7 +43,7 @@ def TaskBombDepth16WithBallastExperiment():
 def AddTask(payload):
     task = taskqueue.Task(url="/taskbomb", payload=json.dumps(payload))
     return task.add("background")
-
+    
 def RegisterTaskBombHandlersForFlask(app):
     @app.route('/taskbomb', methods=["POST"])
     def taskbomb():
@@ -61,3 +62,19 @@ def RegisterTaskBombHandlersForFlask(app):
         return "ok"
     
 
+@task(queue="background")
+def DoTaskBomb(depth, ix, ballast):
+    logging.debug("depth:%s, ix:%s, ballast size:%s" % (depth, ix, len(ballast) if ballast else -1))
+    if depth:
+        for newix in range(2):
+            DoTaskBomb(depth-1, newix, ballast)
+
+def TaskBombDepth10UsingTaskExperiment():
+    def Go():
+        DoTaskBomb(10, 0, None)
+    return "Task Bomb, Depth = 10, Ballast", Go
+
+def TaskBombDepth16UsingTaskExperiment():
+    def Go():
+        DoTaskBomb(16, 0, None)
+    return "Task Bomb, Depth = 16, Ballast", Go

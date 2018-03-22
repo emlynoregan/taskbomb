@@ -7,9 +7,11 @@ app = Flask(__name__)
 from handlers.switchboard import get_switchboard
 from handlers.report import get_report
 from experiments.taskbomb import RegisterTaskBombHandlersForFlask
+from im_task_flask import setuptasksforflask
 
 get_switchboard(app)
 get_report(app)
+setuptasksforflask(app)
 
 RegisterTaskBombHandlersForFlask(app)
 
