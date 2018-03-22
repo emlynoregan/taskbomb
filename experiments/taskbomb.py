@@ -3,6 +3,7 @@ from flask import request
 import logging
 import json
 from im_task import task
+import time
 
 def TaskBombDepth10Experiment():
     def Go():
@@ -52,12 +53,14 @@ def RegisterTaskBombHandlersForFlask(app):
         logging.debug("depth: %s" % depth)
         logging.debug("myix: %s" % lpayload.get("ix"))
         logging.debug("ballast size: %s" % len(lpayload.get("ballast") or ""))
-        
+
         if depth:
             for ix in range(2):
                 lpayload["depth"] = depth - 1
                 lpayload["ix"] = ix
                 AddTask(lpayload)
+
+        time.sleep(2)        
         
         return "ok"
     
@@ -68,6 +71,7 @@ def DoTaskBomb(depth, ix, ballast):
     if depth:
         for newix in range(2):
             DoTaskBomb(depth-1, newix, ballast)
+    time.sleep(2)        
 
 def TaskBombDepth10UsingTaskExperiment():
     def Go():
