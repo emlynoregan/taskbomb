@@ -1,8 +1,8 @@
 import logging
 
-import time
+# import time
 
-time.sleep(20)
+# time.sleep(2)
 
 from flask import Flask
 
