@@ -71,7 +71,7 @@ def DoTaskBomb(depth, ix, ballast):
     if depth:
         for newix in range(2):
             DoTaskBomb(depth-1, newix, ballast)
-    time.sleep(2)        
+#     time.sleep(2)        
 
 @task(queue="background")
 def DoTaskBombWider(depth, ix, ballast):
@@ -79,7 +79,7 @@ def DoTaskBombWider(depth, ix, ballast):
     if depth:
         for newix in range(4):
             DoTaskBombWider(depth-1, newix, ballast)
-    time.sleep(2)        
+#     time.sleep(2)        
 
 def TaskBombDepth10UsingTaskExperiment():
     def Go():
