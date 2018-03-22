@@ -4,7 +4,7 @@ from experiments.taskbomb import TaskBombDepth10Experiment
 
 def get_switchboard(app):
     experiments = [
-        TaskBombDepth10Experiment()
+        TaskBombDepth10Experiment(app)
     ]
 
     @app.route('/', methods=["GET", "POST"])
