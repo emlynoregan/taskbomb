@@ -72,9 +72,9 @@ def DoTaskBomb(depth, ix, ballast):
 def TaskBombDepth10UsingTaskExperiment():
     def Go():
         DoTaskBomb(10, 0, None)
-    return "Task Bomb, Depth = 10, Ballast", Go
+    return "Task Bomb, Depth = 10, @task", Go
 
 def TaskBombDepth16UsingTaskExperiment():
     def Go():
         DoTaskBomb(16, 0, None)
-    return "Task Bomb, Depth = 16, Ballast", Go
+    return "Task Bomb, Depth = 16, @task", Go
