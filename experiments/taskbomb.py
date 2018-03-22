@@ -95,3 +95,8 @@ def TaskBombDepth8UsingWiderExperiment():
     def Go():
         DoTaskBombWider(8, 0, None)
     return "Task Bomb, WIDER, Depth = 8, @task", Go
+
+def TaskBombDepth10UsingWiderExperiment():
+    def Go():
+        DoTaskBombWider(10, 0, None)
+    return "Task Bomb, WIDER, Depth = 10, @task", Go
