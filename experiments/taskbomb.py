@@ -73,6 +73,14 @@ def DoTaskBomb(depth, ix, ballast):
             DoTaskBomb(depth-1, newix, ballast)
     time.sleep(2)        
 
+@task(queue="background")
+def DoTaskBombWider(depth, ix, ballast):
+    logging.debug("depth:%s, ix:%s, ballast size:%s" % (depth, ix, len(ballast) if ballast else -1))
+    if depth:
+        for newix in range(4):
+            DoTaskBombWider(depth-1, newix, ballast)
+    time.sleep(2)        
+
 def TaskBombDepth10UsingTaskExperiment():
     def Go():
         DoTaskBomb(10, 0, None)
@@ -82,3 +90,8 @@ def TaskBombDepth16UsingTaskExperiment():
     def Go():
         DoTaskBomb(16, 0, None)
     return "Task Bomb, Depth = 16, @task", Go
+
+def TaskBombDepth8UsingWiderExperiment():
+    def Go():
+        DoTaskBombWider(8, 0, None)
+    return "Task Bomb, WIDER, Depth = 8, @task", Go
