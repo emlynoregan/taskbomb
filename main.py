@@ -6,9 +6,12 @@ app = Flask(__name__)
 
 from handlers.switchboard import get_switchboard
 from handlers.report import get_report
+from experiments.taskbomb import RegisterTaskBombHandlersForFlask
 
 get_switchboard(app)
 get_report(app)
+
+RegisterTaskBombHandlersForFlask(app)
 
 @app.errorhandler(500)
 def server_error(e):

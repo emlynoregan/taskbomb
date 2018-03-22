@@ -1,10 +1,14 @@
 from flask import render_template, request, redirect
  
-from experiments.taskbomb import TaskBombDepth10Experiment
+from experiments.taskbomb import TaskBombDepth10Experiment, TaskBombDepth12Experiment, \
+    TaskBombDepth14Experiment, TaskBombDepth16Experiment
 
 def get_switchboard(app):
     experiments = [
-        TaskBombDepth10Experiment(app)
+        TaskBombDepth10Experiment(),
+        TaskBombDepth12Experiment(),
+        TaskBombDepth14Experiment(),
+        TaskBombDepth16Experiment()
     ]
 
     @app.route('/', methods=["GET", "POST"])
