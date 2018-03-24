@@ -2,6 +2,6 @@ queue:
 - name: default
   rate: 500/s
 - name: background
-  target: background
+#  target: background
   rate: 500/s
   

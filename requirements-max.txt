@@ -1,0 +1,46 @@
+flask
+im_task
+im_task_flask
+im_future
+im_futuretest
+im_futuretest_flask
+
+
+# adding heaps more to make codebase big
+sUTL==1.0.5.dev9
+jsonschema
+
+#appenginetaskutils==0.4.3
+
+im_util
+im_task
+im_debouncedtask
+im_memcacher
+im_ndbsharded
+im_futurendbsharded
+im_gcsfilesharded
+im_futuregcsfilesharded
+im_futuregcscompose
+im_gcscacher
+im_task_webapp2
+im_qsb
+
+flask
+GoogleAppEngineCloudStorageClient
+google-cloud-storage
+boto
+firebase-admin
+PyGithub
+cloudpickle==0.5.1
+passlib
+pystache
+xmltodict
+requests-toolbelt
+beautifulsoup4
+
+# for old mapreduce
+simplejson
+
+# maybe not necessary?
+uritemplate
+

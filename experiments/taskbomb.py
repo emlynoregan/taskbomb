@@ -4,6 +4,9 @@ import logging
 import json
 from im_task import task
 import time
+from im_futuretest import register_test
+from im_future import future, GenerateOnAllChildSuccess, FutureReadyForResult,\
+    setlocalprogress
 
 def TaskBombDepth10Experiment():
     def Go():
@@ -71,7 +74,7 @@ def DoTaskBomb(depth, ix, ballast):
     if depth:
         for newix in range(2):
             DoTaskBomb(depth-1, newix, ballast)
-#     time.sleep(2)        
+    time.sleep(2)        
 
 @task(queue="background")
 def DoTaskBombWider(depth, ix, ballast):
@@ -79,7 +82,7 @@ def DoTaskBombWider(depth, ix, ballast):
     if depth:
         for newix in range(4):
             DoTaskBombWider(depth-1, newix, ballast)
-#     time.sleep(2)        
+    time.sleep(2)        
 
 def TaskBombDepth10UsingTaskExperiment():
     def Go():
@@ -100,3 +103,24 @@ def TaskBombDepth10UsingWiderExperiment():
     def Go():
         DoTaskBombWider(10, 0, None)
     return "Task Bomb, WIDER, Depth = 10, @task", Go
+
+
+@register_test(description = "task bomb 4 wide, 7 deep", queue="background")
+def TaskBomb4Wide7DeepTest(futurekey):
+    def DoTaskBomb(childfuturekey, depth, ix, weight):
+        if depth:
+            for newix in range(4):
+                lchildOnAllChildSuccess = GenerateOnAllChildSuccess(childfuturekey, 0, lambda a,b: a+b)
+                future(DoTaskBomb, parentkey = childfuturekey, onallchildsuccessf=lchildOnAllChildSuccess, weight=weight/4, futurename="DoTaskBomb %s, %s, %s" % (depth-1, newix, weight/4), queue="background")(depth-1, newix, weight/4)
+            time.sleep(2)
+            raise FutureReadyForResult("waiting")
+        else:
+            time.sleep(2)
+            setlocalprogress(childfuturekey, weight)
+            return 1
+
+    lonAllChildSuccess = GenerateOnAllChildSuccess(futurekey, 0, lambda a,b: a+b)
+    future(DoTaskBomb, parentkey = futurekey, onallchildsuccessf=lonAllChildSuccess, weight=100, futurename="DoTaskBomb %s, %s, %s" % (7, 0, 100), queue="background")(7, 0, 100)
+
+    raise FutureReadyForResult("waiting")
+
