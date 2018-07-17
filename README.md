@@ -56,10 +56,14 @@ This takes it out of the initialization time code.
 4 - Click "taskbomb, depth = 16"
 5 - Go to the cloud console, to the app engine task page
 
-Normal operation: You should see the number of tasks ramp up to the max throughput of the queue, sit there for a few minutes, 
+Normal operation: 
+Before deploying, ensure the logging loop is commented out.
+You should see the number of tasks ramp up to the max throughput of the queue, sit there for a few minutes, 
 then run down and complete. You'll need to keep refreshing the page.
 
-Task stick: You should see the number of tasks ramp up to the max throughput of the queue, sit there for a few minutes,
+Task stick: 
+Before deploying, ensure the logging loop is NOT commented out.
+You should see the number of tasks ramp up to the max throughput of the queue, sit there for a few minutes,
 the run down to almost zero. You'll see a multiple of 8 tasks (8, 16, 24, 32?) stuck in the queue, just sitting there, for 10 minutes. 
 Once they've been there for 10 minutes, they'll timeout and retry and complete immediately. Note the multiple of 8 is because each
 instance runs 8 tasks, so each group of 8 represents a deadlocked instance.
