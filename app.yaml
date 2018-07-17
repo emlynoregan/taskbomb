@@ -2,16 +2,11 @@ runtime: python27
 api_version: 1
 threadsafe: true
 instance_class: F1
-  
+
 automatic_scaling:
   max_idle_instances: 0
-#  max_pending_latency: 50ms
-#  max_concurrent_requests: 4
-  
-default_expiration: "10m"
 
-# env_variables:
-#   GAE_USE_SOCKETS_HTTPLIB : 'anyvalue'
+default_expiration: "10m"
   
 libraries:
 - name: jinja2
@@ -29,17 +24,16 @@ handlers:
   script: main.app
   login: admin
   
-inbound_services:
-#   - channel_presence
-  - warmup
+# inbound_services:
+# - warmup
 
-includes:
-- mapreduce/include.yaml
+# includes:
+# - mapreduce/include.yaml
 
-builtins:
-- appstats: on
+# builtins:
+# - appstats: on
 #- deferred: on
-- remote_api: on
+# - remote_api: on
 
 skip_files:
 - ^(.*/)?app\.yaml
@@ -51,7 +45,7 @@ skip_files:
 - ^(.*/)?.*\.py[co]
 - ^(.*/)?.*/RCS/.*
 - ^(.*/)?\..*
-- ui2/node_modules/(.*)
-- webapp/node_modules/(.*)
+# - ui2/node_modules/(.*)
+# - webapp/node_modules/(.*)
 
 

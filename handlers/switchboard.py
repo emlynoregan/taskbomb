@@ -1,20 +1,21 @@
 from flask import render_template, request, redirect
+from experiments.taskbomb import TaskBombDepth16Experiment
  
-from experiments.taskbomb import TaskBombDepth10Experiment, TaskBombDepth16Experiment,\
-    TaskBombDepth10WithBallastExperiment, TaskBombDepth16WithBallastExperiment, \
-    TaskBombDepth10UsingTaskExperiment, TaskBombDepth16UsingTaskExperiment, \
-    TaskBombDepth8UsingWiderExperiment, TaskBombDepth10UsingWiderExperiment
+# from experiments.taskbomb import TaskBombDepth10Experiment, TaskBombDepth16Experiment,\
+#     TaskBombDepth10WithBallastExperiment, TaskBombDepth16WithBallastExperiment
+#     TaskBombDepth10UsingTaskExperiment, TaskBombDepth16UsingTaskExperiment, \
+#     TaskBombDepth8UsingWiderExperiment, TaskBombDepth10UsingWiderExperiment
 
 def get_switchboard(app):
     experiments = [
-        TaskBombDepth10Experiment(),
+#         TaskBombDepth10Experiment(),
         TaskBombDepth16Experiment(),
-        TaskBombDepth10WithBallastExperiment(),
-        TaskBombDepth16WithBallastExperiment(),
-        TaskBombDepth10UsingTaskExperiment(),
-        TaskBombDepth16UsingTaskExperiment(),
-        TaskBombDepth8UsingWiderExperiment(),
-        TaskBombDepth10UsingWiderExperiment()
+#         TaskBombDepth10WithBallastExperiment(),
+#         TaskBombDepth16WithBallastExperiment()
+#         TaskBombDepth10UsingTaskExperiment(),
+#         TaskBombDepth16UsingTaskExperiment(),
+#         TaskBombDepth8UsingWiderExperiment(),
+#         TaskBombDepth10UsingWiderExperiment()
     ]
 
     @app.route('/', methods=["GET", "POST"])
