@@ -7,7 +7,7 @@ automatic_scaling:
   max_idle_instances: 0
 
 default_expiration: "10m"
-  
+
 libraries:
 - name: jinja2
   version: latest

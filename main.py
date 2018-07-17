@@ -1,13 +1,16 @@
 import logging
 
-logging.info("Entered main.py")
+# logging.info("Entered main.py")
 
 ################################################
 ################################################
 # Include these next couple of lines to cause task
 # stick, comment out to run cleanly
-for i in xrange(10000):
-    logging.debug("these logging statements should set off taskstick")
+try:
+    for i in xrange(10000):
+        logging.debug("these logging statements should set off taskstick")
+except:
+    pass
 ################################################
 ################################################
 
@@ -30,4 +33,4 @@ def server_error(e):
     logging.exception('An error occurred during a request.')
     return 'An internal error occurred.', 500
 
-logging.info("Left main.py")
+# logging.info("Left main.py")
